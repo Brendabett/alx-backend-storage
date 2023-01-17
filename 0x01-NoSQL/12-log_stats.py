@@ -1,26 +1,28 @@
 #!/usr/bin/env python3
-""" MongoDB Operations with Python using pymongo """
+"""Defines a function that  provides some stats
+   about Nginx logs stored in MongoDB
+"""
 from pymongo import MongoClient
 
-if __name__ == "__main__":
-    """ Provides some stats about Nginx logs stored in MongoDB """
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    nginx_collection = client.logs.nginx
 
-    n_logs = nginx_collection.count_documents({})
-    print(f'{n_logs} logs')
+def nginx_stats_check():
+    """provides some stats about Nginx logs stored in MongoDB:"""
+    client = MongoClient()
+    collection = client.logs.nginx
 
-    methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-    print('Methods:')
-    for method in methods:
-        count = nginx_collection.count_documents({"method": method})
-        print(f'\tmethod {method}: {count}')
+    doc_count = collection.count_documents({})
+    print({} logs.format(doc_count))
 
-    status_check = nginx_collection.count_documents(
-        {"method": "GET", "path": "/status"}
-    )
+    methods_list = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    print("Methods:")
+    for method in methods_list:
+        method_count = collection.count_documents({"method": method})
+        print(tmethod {}: {}.format(method, method_count))
+    status_count = collection.count_documents({
+        "method": "GET", "path": "/status"
+    })
+    print({} status check.format(status_count))
 
-    print(f'{status_check} status check')
 
 if __name__ == "__main__":
     nginx_stats_check()
