@@ -21,3 +21,6 @@ if __name__ == "__main__":
     )
 
     print(f'{status_check} status check')
+
+if __name__ == "__main__":
+    nginx_stats_check()
