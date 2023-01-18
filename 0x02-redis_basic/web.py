@@ -18,7 +18,7 @@ def wrap_requests(fn: Callable) -> Callable:
         redis.incr(f"count:{url}")
         cached_response = redis.get(f"cached:{url}")
         if cached_response:
-            return cached_response.decode(utf-8)
+            return cached_response.decode('utf-8')
         result = fn(url)
         redis.setex(f"cached:{url}", 10, result)
         return result
