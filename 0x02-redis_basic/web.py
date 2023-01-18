@@ -3,7 +3,7 @@
 web module
 """
 import requests
-from redis import Redis
+import Redis
 rc = Redis()
 count = 0
 
